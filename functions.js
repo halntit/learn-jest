@@ -15,7 +15,7 @@ const functions = {
     fetchUser: (id) =>
         axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
             .then(response => response.data)
-            .catch(error => console.log(error))
+            .catch(error => error)
 };
 
 module.exports = functions;

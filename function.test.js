@@ -34,3 +34,40 @@ test('createUser should be truthy', () => {
 test('createUser should be an user object', () => {
     expect(functions.createUser('a', 1)).toEqual({ name: 'a', age: 1 });
 });
+
+test('Should be under 1600', () => {
+    const load1 = 800;
+    const load2 = 700;
+    expect(load1 + load2).toBeLessThan(1600);
+});
+
+test('There is no I in team', () => {
+    expect('team').not.toMatch(/I/);
+});
+
+test('Admin should be in usernames', () => {
+    const usernames = ['john', 'karen', 'admin'];
+    expect(usernames).toContain('admin');
+});
+
+test('fetchUser should be returned a user', () => {
+    functions.fetchUser(1).then(user => {
+        expect(user).toBeDefined();
+        expect(user.id).toBe(1);
+        expect(user.name).toBe('Leanne Graham');
+    });
+})
+
+test('fetchUser should be returned a user (using async)', async () => {
+    const user = await functions.fetchUser(2);
+    expect(user).toBeDefined();
+    expect(user.id).toBe(2);
+    expect(user.name).toBe('Ervin Howell');
+});
+
+test('fetchUser should be returned an error', async () => {
+    const error = await functions.fetchUser(11);
+    expect(error).toBeDefined();
+    expect(error.response.status).toBe(404);
+    expect(error.message).toBe('Request failed with status code 404');
+})
