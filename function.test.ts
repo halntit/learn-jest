@@ -1,6 +1,30 @@
-const functions = require('./functions.js');
-//import functions from './functions.js';
+import functions from './functions';
 
+// try something like life-cycle in jest
+// const initDatabase = () => console.log(' ... database initialized');
+// const closeDatabase = () => console.log(' ... database closed');
+
+// beforeEach(() => initDatabase());
+// afterEach(() => closeDatabase());
+// beforeAll(() => initDatabase());
+// afterAll(() => closeDatabase());
+
+const nameCheck = () => console.log('name checked');
+
+describe('checking names', () => {
+    beforeEach(() => nameCheck());
+
+    test('User is Jeff', () => {
+        const user = 'Jeff';
+        expect(user).toBe('Jeff');
+    });
+    test('User is Mary', () => {
+        const user = 'Mary';
+        expect(user).toBe('Mary');
+    });;
+});
+
+// ===============================
 test('adds 1 + 2 to equal 3', () => {
     expect(functions.add(1, 2)).toBe(3);
 });
